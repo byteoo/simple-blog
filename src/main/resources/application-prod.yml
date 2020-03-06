@@ -1,0 +1,16 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    username: root
+    password: 123455
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimeZone=GMT
+
+debug: true
+logging:
+  level: debug
+  file:
+    name: log/blog.log
+
+

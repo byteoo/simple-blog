@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoyu.simple_blog.mapper.BlogMapper">
+	<resultMap id="BaseResultMap" type="com.shaoyu.simple_blog.DO.Blog">
+		<!--@mbg.generated-->
+		<!--@Table blog-->
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="user_id" jdbcType="BIGINT" property="userId"/>
+		<result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result column="content" jdbcType="LONGVARCHAR" property="content"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="commentabled" jdbcType="CHAR" property="commentabled"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+		<result column="preview" jdbcType="LONGVARCHAR" property="preview"/>
+		<result column=" views" jdbcType="INTEGER" property="views"/>
+		<result column="published" jdbcType="CHAR" property="published"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		id, user_id, category_id, title, content, create_time, commentabled, update_time,
+		preview, ` views`, published
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		<!--@mbg.generated-->
+		select
+		<include refid="Base_Column_List"/>
+		from blog
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!--@mbg.generated-->
+		delete from blog
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shaoyu.simple_blog.DO.Blog"
+			useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into blog (user_id, category_id, title,
+		content, create_time, commentabled,
+		update_time, preview, ` views`,
+		published)
+		values (#{userId,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{commentabled,jdbcType=CHAR},
+		#{updateTime,jdbcType=TIMESTAMP}, #{preview,jdbcType=LONGVARCHAR}, #{views,jdbcType=INTEGER},
+		#{published,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shaoyu.simple_blog.DO.Blog"
+			useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into blog
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="commentabled != null">
+				commentabled,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="preview != null">
+				preview,
+			</if>
+			<if test="views != null">
+				` views`,
+			</if>
+			<if test="published != null">
+				published,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="commentabled != null">
+				#{commentabled,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="preview != null">
+				#{preview,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="views != null">
+				#{views,jdbcType=INTEGER},
+			</if>
+			<if test="published != null">
+				#{published,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.shaoyu.simple_blog.DO.Blog">
+		<!--@mbg.generated-->
+		update blog
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="commentabled != null">
+				commentabled = #{commentabled,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="preview != null">
+				preview = #{preview,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="views != null">
+				` views` = #{views,jdbcType=INTEGER},
+			</if>
+			<if test="published != null">
+				published = #{published,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.shaoyu.simple_blog.DO.Blog">
+		<!--@mbg.generated-->
+		update blog
+		set user_id = #{userId,jdbcType=BIGINT},
+		category_id = #{categoryId,jdbcType=BIGINT},
+		title = #{title,jdbcType=VARCHAR},
+		content = #{content,jdbcType=LONGVARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		commentabled = #{commentabled,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		preview = #{preview,jdbcType=LONGVARCHAR},
+		` views` = #{views,jdbcType=INTEGER},
+		published = #{published,jdbcType=CHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="count" resultType="java.lang.Long">
+    select count(1) from blog
+  </select>
+</mapper>

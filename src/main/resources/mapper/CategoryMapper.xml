@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoyu.simple_blog.mapper.CategoryMapper">
+	<resultMap id="BaseResultMap" type="com.shaoyu.simple_blog.DO.Category">
+		<!--@mbg.generated-->
+		<!--@Table category-->
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="desc" jdbcType="VARCHAR" property="desc"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		id, `name`, `desc`
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		<!--@mbg.generated-->
+		select
+		<include refid="Base_Column_List"/>
+		from category
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!--@mbg.generated-->
+		delete from category
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shaoyu.simple_blog.DO.Category"
+			useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into category (`name`, `desc`)
+		values (#{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shaoyu.simple_blog.DO.Category"
+			useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into category
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				`name`,
+			</if>
+			<if test="desc != null">
+				`desc`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				#{desc,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.shaoyu.simple_blog.DO.Category">
+		<!--@mbg.generated-->
+		update category
+		<set>
+			<if test="name != null">
+				`name` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				`desc` = #{desc,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.shaoyu.simple_blog.DO.Category">
+		<!--@mbg.generated-->
+		update category
+		set `name` = #{name,jdbcType=VARCHAR},
+		`desc` = #{desc,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from category
+	</select>
+	<insert id="insertCategory">
+    insert into category (`name`)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from category
+		where name = #{name,jdbcType=VARCHAR}
+	</select>
+
+</mapper>
